@@ -15,19 +15,22 @@ body {
     --blue: rgb(37, 4, 169);
     --green: rgb(65, 152, 3);
     --lightGreen: rgb(188, 237, 64);
-    --yellow: rgb(252, 204, 29);
+    --yellow: rgb(254, 246, 209);
     --shadowLight: rgb(140, 140, 140);
+    --shadowDark: rgb(43, 51, 38);
     --bigTextFont: 'Pinyon Script';
-    --bigTextSize: 80px;
+    --bigTextSize: 4rem;
     --bodyTextFont: 'Garamond';
 }
 
+/* Container layouts */
+
 .container {
     background-color: var(--carpetColor);
-    height: 100vh;
+    height: 150vh;
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
-    grid-template-rows: 1fr 3fr 1fr;
+    grid-template-rows: 8% 3fr 1fr;
 }
 .header-container {
     grid-column: 1 / span 3;
@@ -53,13 +56,26 @@ body {
 .card-container {
     display: grid;
     gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     grid-template-rows: repeat(3, 1fr);
     justify-content: center;
 
     background-color: var(--yellow);
-    padding: 80px;
+    padding: 3rem;
+    box-shadow: 10px 10px 20px var(--shadowDark);
+    border-radius: 8px;
 }
+
+.side-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: var(--bodyTextFont);
+    color: var(--bigText);
+}
+
+/* Card and info styles */
 
 .book-card {
     display: flex;
@@ -84,4 +100,23 @@ body {
 
 .book-author {
     font-style: italic;
+}
+
+/* Button styling */
+button {
+    background-color: var(--lightGreen);
+    font-family: var(--bodyTextFont);
+    font-size: 28px;
+    color: var(--blue);
+    border-radius: 30px;
+    width: 2rem;
+    height: auto;
+    border: none;
+    text-align: center;
+    transition-duration: 0.4s;
+    margin: 20px;
+}
+button:hover {
+    background-color: var(--bigText);
+    box-shadow: 2px 2px 10px var(--blue);
 }
