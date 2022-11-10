@@ -1,16 +1,6 @@
 const ADD_BUTTON = document.querySelector('.addBook-btn');
-const TITLE_INPUT = document.querySelector('#title-input');
-const AUTHOR_INPUT = document.querySelector('#author-input');
-
-
-
-function Book(title, author){
-    this.title = TITLE_INPUT.value;
-    this.author = AUTHOR_INPUT.value;
-}
-
-let myLibrary = [];
-let newBook;
+const TITLE_INPUT = document.querySelector('#title');
+const AUTHOR_INPUT = document.querySelector('#author');
 
 ADD_BUTTON.addEventListener('click', e => {
     e.preventDefault();
@@ -20,6 +10,13 @@ ADD_BUTTON.addEventListener('click', e => {
     AUTHOR_INPUT.value = '';
 })
 
+function Book(title, author){
+    this.title = TITLE_INPUT.value;
+    this.author = AUTHOR_INPUT.value;
+}
+
+let myLibrary = [];
+let newBook;
 
 function newBookCard() {
     const BOOKCARD_TITLE = document.createElement('div');
