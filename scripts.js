@@ -68,26 +68,37 @@ function newBookCard() {
 }
 
 function createBookInfo(info){
+    const LIBRARY = document.getElementById('card-container')
     const NEW_CARD = document.createElement('div');
+    const NEW_TITLE = document.createElement('div');
+    const NEW_AUTHOR = document.createElement('div');
+    const removeBtn = document.createElement('button');
+
     NEW_CARD.className = 'book-card';
     NEW_CARD.setAttribute('id', myLibrary.indexOf(info))
-    document.getElementById('card-container').append(NEW_CARD)
     
-    const NEW_TITLE = document.createElement('div');
+    
     NEW_TITLE.className = 'book-title';
     NEW_TITLE.textContent = `${info.title}`
-    NEW_CARD.append(NEW_TITLE)
+    NEW_CARD.appendChild(NEW_TITLE)
 
-    const NEW_AUTHOR = document.createElement('div');
+    
     NEW_AUTHOR.className = 'book-author';
     NEW_AUTHOR.textContent = `${info.author}`
-    NEW_CARD.append(NEW_AUTHOR)
+    NEW_CARD.appendChild(NEW_AUTHOR)
 
-    const removeBtn = document.createElement('button');
+    
     removeBtn.setAttribute('id', 'removeBtn');
-    NEW_CARD.append(removeBtn);
+    NEW_CARD.appendChild(removeBtn);
+
+    LIBRARY.appendChild(NEW_CARD)
+
     removeBtn.addEventListener('click', () => {
-    myLibrary.splice(myLibrary.indexOf(info),1)});
+    myLibrary.splice(myLibrary.indexOf(info),1);
+    newBookCard();
+    });
+
+    
 }
 
 
