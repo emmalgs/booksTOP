@@ -2,11 +2,10 @@ const ADD_BUTTON = document.querySelector('.addBook-btn');
 const TITLE_INPUT = document.querySelector('#title');
 const AUTHOR_INPUT = document.querySelector('#author');
 
+//ADD BOOK popup
 const openModalButtons = document.querySelectorAll('[data-modal-target]');
 const closeModalButtons = document.querySelectorAll('[data-close-button]');
 const overlay = document.getElementById('overlay')
-
-//ADD BOOK popup
 openModalButtons.forEach(button => {
     button.addEventListener('click', () => {
         const modal = document.querySelector(button.dataset.modalTarget)
@@ -59,6 +58,7 @@ function addBookToLibrary(){
     }
 
 function newBookCard() {
+    //prevents duplicating books in array when function is called
     const LIBRARY = document.getElementById('card-container');
     const BOOKS = document.querySelectorAll('.book-card');
     BOOKS.forEach(book => LIBRARY.removeChild(book));
@@ -72,12 +72,17 @@ function createBookInfo(info){
     const NEW_CARD = document.createElement('div');
     const NEW_TITLE = document.createElement('div');
     const NEW_AUTHOR = document.createElement('div');
-    const removeBtn = document.createElement('button');
+    const REMOVE = document.createElement('button');
+    const READ = document.createElement('input');
+    const LABEL = document.createElement('label');
 
     NEW_CARD.className = 'book-card';
     NEW_CARD.setAttribute('id', myLibrary.indexOf(info))
     
-    
+    REMOVE.setAttribute('id', 'removeBtn');
+    REMOVE.textContent = 'x'
+    NEW_CARD.appendChild(REMOVE);
+
     NEW_TITLE.className = 'book-title';
     NEW_TITLE.textContent = `${info.title}`
     NEW_CARD.appendChild(NEW_TITLE)
@@ -87,17 +92,25 @@ function createBookInfo(info){
     NEW_AUTHOR.textContent = `${info.author}`
     NEW_CARD.appendChild(NEW_AUTHOR)
 
-    
-    removeBtn.setAttribute('id', 'removeBtn');
-    NEW_CARD.appendChild(removeBtn);
+
+    READ.type = 'checkbox';
+    READ.name = 'read';
+    READ.id = 'read';
+    // READ.value
+
+    LABEL.htmlFor = 'read'
+    LABEL.id = 'readLabel'
+    LABEL.appendChild(document.createTextNode('Read'));
+
+    NEW_CARD.appendChild(READ);
+    NEW_CARD.appendChild(LABEL);
 
     LIBRARY.appendChild(NEW_CARD)
 
-    removeBtn.addEventListener('click', () => {
+    REMOVE.addEventListener('click', () => {
     myLibrary.splice(myLibrary.indexOf(info),1);
     newBookCard();
     });
-
     
 }
 
