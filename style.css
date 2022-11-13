@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,300&family=Pinyon+Script&display=swap');
-* {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -18,15 +20,19 @@
     --bigTextFont: 'Pinyon Script';
     --bigTextSize: 4rem;
     --bodyTextFont: 'Garamond';
+    --input-border: #8b8a8b;
+    --input-focus-h: 245;
+    --input-focus-s: 100%;
+    --input-focus-l: 42%;
 }
 
 /* Container layouts */
 
 .container {
     background-color: var(--carpetColor);
-    height: 150vh;
+    height: 170vh;
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-columns: 1fr 4fr 1fr;
     grid-template-rows: 8% 3fr 1fr;
 }
 .header-container {
@@ -53,8 +59,8 @@
 .card-container {
     display: grid;
     gap: 20px;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-rows: auto;
     justify-content: center;
 
     background-color: var(--yellow);
@@ -82,7 +88,7 @@
     font-family: var(--bodyTextFont);
     text-align: center;
     background-color: var(--cardColor);
-    padding: 12px;
+    padding: 20px;
     margin: 12px;
     border-radius: 3px;
     border-left: 8px solid var(--blue);
@@ -94,31 +100,72 @@
 .book-title {
     font-weight: bold;
     text-transform: uppercase;
-    padding: 8px;
+    padding: 12px 8px;
+    font-size: 1.5rem;
     grid-column: span 4;
     grid-row: 2 / 3;
 }
 
 .book-author {
     font-style: italic;
+    font-size: 1.25rem;
     padding: 8px;
     grid-column: span 4;
     grid-row: 3 / 4;
 }
 
 .checkbox {
-    display: flex;
-    flex-direction: row;
-    padding: 14px 8px;
-    justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: 1em auto;
+    gap: 0.5em;
+    justify-items: center;
+    align-items: end;
+    padding: 18px;
 
     grid-row: 4 /5;
-    grid-column: span 4;
+    grid-column: 2 / span 2;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1em;
+    height: 1em;
+    border: 0.15em solid currentColor;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+
+    display: grid;
+    place-content: center;
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--blue);
+
+    transform-origin: bottom left;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 63%);
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+input[type="checkbox"]:focus {
+    outline: max(2px, 0.15em) solid currentColor;
+    outline-offset: max(2px, 0.15em);
 }
 
 #readLabel {
     font-family: var(--bodyTextFont);
 }
+
 .remove {
     display: flex;
     flex-direction: row;
@@ -182,9 +229,29 @@ button:hover {
     box-shadow: 2px 2px 10px var(--blue);
 }
 
+/* Modal/Pop-Up and Input  */
+input[type="text"] {
+    font-family: var(--bodyTextFont);
+    border: 2px solid var(--input-border);
+    border-radius: .3em;
+    width: 200px;
+    padding: 0.25em 0.5em;
+    font-size: max(16px, 1em);
+    font-size: 16px;
+    transition: 180ms box-shadow ease-in-out;
+}
+input[type="text"]:focus {
+    border-color: hsl(var(--input-focus-h), var(--input-focus-s), var(--input-focus-l));
+    box-shadow: 0 0 0 3px hsla(var(--input-focus-h), var(--input-focus-s), calc(var(--input-focus-l) +
+    40%), 0.8);
+}
 
-
-/* Modal/Pop-Up  */
+.modal-body > label {
+    font-family: var(--bodyTextFont);
+    font-size: 1rem;
+    padding-bottom: 2px;
+    padding-top: 12px;
+}
 
 .modal {
     position: fixed;
@@ -222,7 +289,6 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: var(--bodyTextFont);
     text-transform: uppercase;
 }
 
