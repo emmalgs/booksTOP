@@ -73,15 +73,23 @@ function createBookInfo(info){
     const NEW_TITLE = document.createElement('div');
     const NEW_AUTHOR = document.createElement('div');
     const REMOVE = document.createElement('button');
+    const RMV_IMAGE = new Image();
+    const RMV_DIV = document.createElement('div');
     const READ = document.createElement('input');
     const LABEL = document.createElement('label');
+    const READ_DIV = document.createElement('div');
+    
 
     NEW_CARD.className = 'book-card';
     NEW_CARD.setAttribute('id', myLibrary.indexOf(info))
     
     REMOVE.setAttribute('id', 'removeBtn');
-    REMOVE.textContent = 'x'
-    NEW_CARD.appendChild(REMOVE);
+    RMV_IMAGE.src = 'images/trash-can-outline.png';
+    RMV_DIV.className = 'remove';
+
+    NEW_CARD.appendChild(RMV_DIV);
+    RMV_DIV.appendChild(REMOVE);
+    REMOVE.appendChild(RMV_IMAGE);
 
     NEW_TITLE.className = 'book-title';
     NEW_TITLE.textContent = `${info.title}`
@@ -96,14 +104,16 @@ function createBookInfo(info){
     READ.type = 'checkbox';
     READ.name = 'read';
     READ.id = 'read';
-    // READ.value
 
     LABEL.htmlFor = 'read'
     LABEL.id = 'readLabel'
     LABEL.appendChild(document.createTextNode('Read'));
 
-    NEW_CARD.appendChild(READ);
-    NEW_CARD.appendChild(LABEL);
+    READ_DIV.className = 'checkbox';
+
+    NEW_CARD.appendChild(READ_DIV);
+    READ_DIV.appendChild(READ);
+    READ_DIV.appendChild(LABEL);
 
     LIBRARY.appendChild(NEW_CARD)
 

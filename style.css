@@ -75,13 +75,14 @@
 /* Card and info styles */
 
 .book-card {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
 
     font-family: var(--bodyTextFont);
     text-align: center;
     background-color: var(--cardColor);
-    padding: 40px;
+    padding: 12px;
     margin: 12px;
     border-radius: 3px;
     border-left: 8px solid var(--blue);
@@ -93,31 +94,53 @@
 .book-title {
     font-weight: bold;
     text-transform: uppercase;
-    grid-column: 2 / 3;
+    padding: 8px;
+    grid-column: span 4;
     grid-row: 2 / 3;
 }
 
 .book-author {
     font-style: italic;
-    grid-column: 2 / 3;
-    grid-row: 4 / 5;
+    padding: 8px;
+    grid-column: span 4;
+    grid-row: 3 / 4;
 }
 
-#read {
-    grid-column: 2 / 3;
-    grid-row: 5 / 6;
+.checkbox {
+    display: flex;
+    flex-direction: row;
+    padding: 14px 8px;
+    justify-content: space-evenly;
+
+    grid-row: 4 /5;
+    grid-column: span 4;
 }
+
 #readLabel {
-    grid-column: 1 / 2;
-    grid-row: 5 / 6;
+    font-family: var(--bodyTextFont);
 }
+.remove {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    height: 20px;
+
+    grid-column: span 4;
+    grid-row: 1 / 2;
+}
+.remove img {
+    height: 12px;
+    padding: 0 5px;
+}
+
 #removeBtn {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    padding: 10px;
-    text-align: center;
     color: var(--bigText);
-    background-color: brown;
-    scale: .5;
+    background-color: rgb(214, 38, 38);
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    /* border-radius: 100%; */
 }
 
 /* Button styling */
