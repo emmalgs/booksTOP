@@ -42,6 +42,8 @@ ADD_BUTTON.addEventListener('click', e => {
     AUTHOR_INPUT.value = '';
 })
 
+let myLibrary = [];
+let newBook;
 //book constructor for myLibrary array
 class Book {
     constructor (title, author) {
@@ -50,8 +52,7 @@ class Book {
     } 
 }
 
-let myLibrary = [];
-let newBook;
+
 
 function addBookToLibrary(){
     newBook = new Book(title, author);
