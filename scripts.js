@@ -43,9 +43,11 @@ ADD_BUTTON.addEventListener('click', e => {
 })
 
 //book constructor for myLibrary array
-function Book(title, author){
+class Book {
+    constructor (title, author) {
     this.title = TITLE_INPUT.value;
     this.author = AUTHOR_INPUT.value;
+    } 
 }
 
 let myLibrary = [];
