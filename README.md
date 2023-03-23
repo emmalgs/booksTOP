@@ -1,6 +1,6 @@
-# _{My Library}_
+# _My Library_
 
-#### By _**{Emma Gerigscott}**_
+#### By _**Emma Gerigscott**_
 
 #### _An app to add books you've read with name and author_
 
